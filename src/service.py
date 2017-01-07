@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 """Simple HTTP server"""
 
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler
 
 # HTTPRequestHandler class
 
 class TestHTTPServerRequestHandler(BaseHTTPRequestHandler):
     """HTTP server Class"""
-    # GET
     def do_GET(self):
+        """GET Function"""
         # Send response status code
         self.send_response(200)
 
@@ -21,15 +21,3 @@ class TestHTTPServerRequestHandler(BaseHTTPRequestHandler):
         # Write content as utf-8 data
         self.wfile.write(bytes(message, "utf8"))
         return
-
-def run():
-    print('starting server...')
-
-    # Server settings
-    # Choose port 8080, for port 80, which is normally used for a http server, you need root access
-    server_address = ('127.0.0.1', 8081)
-    httpd = HTTPServer(server_address, TestHTTPServerRequestHandler)
-    print('running server...')
-    httpd.serve_forever()
-
-run()
